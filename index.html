@@ -3,177 +3,480 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Artem Shevchenko — ML engineer at Yandex Direct. Production ML, LLM evaluation, antifraud, robotics research.">
-  <meta name="theme-color" content="#0a0b0f">
+  <meta name="description" content="Artem Shevchenko — ML engineer at Yandex Direct.">
+  <meta name="theme-color" content="#0d0d0c">
   <title>Artem Shevchenko</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0c;
+      --bg2: #141412;
+      --text: #e8e4dc;
+      --muted: #8c8880;
+      --dim: #55524c;
+      --accent: #c9a227;
+      --line: rgba(232, 228, 220, 0.08);
+      --w: 720px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 40% at 50% -10%, rgba(201, 162, 39, 0.07), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--w);
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0 0;
+      margin-bottom: 80px;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 120ms;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* hero */
+    .hero { margin-bottom: 88px; }
+
+    .hero-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 52px);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      max-width: 16ch;
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-bio strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .links-row a {
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      background: var(--bg2);
+      transition: border-color 120ms, color 120ms;
+    }
+
+    .links-row a:hover {
+      border-color: rgba(232, 228, 220, 0.2);
+      color: var(--text);
+    }
+
+    .links-row a.primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: transparent;
+    }
+
+    .links-row a.primary:hover { opacity: 0.88; }
+
+    /* sections */
+    section { margin-bottom: 72px; }
+
+    .sec-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* work grid */
+    .work-grid {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .work-item {
+      background: var(--bg2);
+      padding: 22px 24px;
+    }
+
+    .work-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .work-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .work-item .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* projects */
+    .proj-list { list-style: none; }
+
+    .proj-list li { border-bottom: 1px solid var(--line); }
+
+    .proj-list li:first-child { border-top: 1px solid var(--line); }
+
+    .proj-list a {
+      display: block;
+      padding: 18px 0;
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 120ms;
+    }
+
+    .proj-list a:hover { padding-left: 6px; }
+
+    .proj-list a:hover .proj-name { color: var(--accent); }
+
+    .proj-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      transition: color 120ms;
+    }
+
+    .proj-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* experience */
+    .exp-list { list-style: none; }
+
+    .exp-list li {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .exp-list li:first-child { border-top: 1px solid var(--line); }
+
+    .exp-when {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding-top: 3px;
+    }
+
+    .exp-role {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .exp-detail {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stack-item {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .stack-item h3 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .stack-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* footer */
+    footer {
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    footer p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { margin-bottom: 48px; }
+      .hero { margin-bottom: 56px; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .exp-list li { grid-template-columns: 1fr; gap: 4px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 12px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="shell">
+  <div class="wrap">
 
-    <aside class="rail">
-      <div class="mark">AS</div>
-      <p class="rail-name">Artem Shevchenko</p>
-      <p class="rail-desc">ML engineer, UTC+3. Production systems, evaluation, market data, robotics on the side.</p>
-      <nav class="rail-links">
-        <a href="mailto:aeshevchenko1704@gmail.com">Email</a>
+    <nav>
+      <a class="logo" href="#">Artem Shevchenko</a>
+      <ul class="nav-links">
+        <li><a href="mailto:aeshevchenko1704@gmail.com">Email</a></li>
+        <li><a href="https://github.com/aeshef" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/aeshef/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://t.me/plxlrd" target="_blank" rel="noopener">Telegram</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <p class="hero-tag">ML Engineer · UTC+3</p>
+      <h1>Production ML, evals, and side research.</h1>
+      <p class="hero-bio">
+        <strong>Yandex Direct</strong> — ads moderation, antifraud, retraining, release pipelines.
+        Before that <strong>Search Neuro</strong> — LLM quality checks, SFT data, labeling ops.
+        Side work in quant finance, robotics, and NLP.
+      </p>
+      <div class="links-row">
+        <a class="primary" href="mailto:aeshevchenko1704@gmail.com">Email me</a>
         <a href="https://github.com/aeshef" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/aeshef/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://t.me/plxlrd" target="_blank" rel="noopener">Telegram</a>
-      </nav>
-    </aside>
-
-    <main class="content">
-
-      <header class="hero">
-        <p class="kicker">Yandex Direct · HSE · YSDA · ITMO Robotics Lab</p>
-        <h1>ML systems, evals, and research code.</h1>
-        <p class="lead">
-          I work at Yandex Direct on ads moderation, antifraud, retraining, evaluation,
-          and release pipelines. Before that: Search Neuro — LLM quality checks,
-          SFT data, and labeling operations.
-        </p>
-        <div class="hero-btns">
-          <a class="btn primary" href="mailto:aeshevchenko1704@gmail.com">Contact</a>
-          <a class="btn" href="https://github.com/aeshef" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </header>
-
-      <section class="section">
-        <div class="sec-header">
-          <span class="sec-num">01</span>
-          <h2>Work</h2>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <p class="card-tag">Production ML</p>
-            <h3>Retraining and release loops</h3>
-            <p>Pipelines for model updates, validation, monitoring, and monthly production releases in ads moderation.</p>
-          </article>
-          <article class="card">
-            <p class="card-tag">Evaluation</p>
-            <h3>LLM quality checks</h3>
-            <p>Metrics, slices, QC, and annotation checks for LLM answers and SFT data. Most of the work is finding where the model fails and naming that failure clearly.</p>
-          </article>
-          <article class="card">
-            <p class="card-tag">Research</p>
-            <h3>Markets, robots, uncertainty</h3>
-            <p>CEX-DEX execution risk, 3D visual grounding at ITMO Robotics Lab, and NLP experiments around attention sinks and model uncertainty.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="sec-header">
-          <span class="sec-num">02</span>
-          <h2>Selected projects</h2>
-        </div>
-        <div class="project-list">
-          <a class="project" href="https://github.com/aeshef/bRECs" target="_blank" rel="noopener">
-            <span class="proj-num">01</span>
-            <span>
-              <span class="proj-name">bRECs</span>
-              <span class="proj-desc">Portfolio optimizer: Black-Litterman, risk parity, mean-CVaR, Kelly. Python, PyTorch, cvxpy.</span>
-            </span>
-          </a>
-          <a class="project" href="https://github.com/aeshef/Finam-AI-Chat" target="_blank" rel="noopener">
-            <span class="proj-num">02</span>
-            <span>
-              <span class="proj-name">Finam AI Chat</span>
-              <span class="proj-desc">NL-to-TradeAPI assistant with structured trade intents and policy checks. Finam × FCS AI Trade hackathon winner.</span>
-            </span>
-          </a>
-          <a class="project" href="https://github.com/aeshef/obsidian-agent" target="_blank" rel="noopener">
-            <span class="proj-num">03</span>
-            <span>
-              <span class="proj-name">obsidian-agent</span>
-              <span class="proj-desc">Agent over Obsidian: kanban, routines, finance and health tracking, RAG over notes.</span>
-            </span>
-          </a>
-          <a class="project" href="https://github.com/aeshef/GoodNotes-AI-Markup" target="_blank" rel="noopener">
-            <span class="proj-num">04</span>
-            <span>
-              <span class="proj-name">GoodNotes-AI-Markup</span>
-              <span class="proj-desc">Handwriting dataset and tooling: custom detection/OCR categories, labeling, HF export.</span>
-            </span>
-          </a>
-          <a class="project" href="https://github.com/aeshef/preference-influencing" target="_blank" rel="noopener">
-            <span class="proj-num">05</span>
-            <span>
-              <span class="proj-name">preference-influencing</span>
-              <span class="proj-desc">YSDA mentoring project on persona vectors and model steering.</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="sec-header">
-          <span class="sec-num">03</span>
-          <h2>Signals</h2>
-        </div>
-        <div class="timeline">
-          <div class="tl-item">
-            <span class="tl-when">Now</span>
-            <div>
-              <h3>ML Engineer, Yandex Direct</h3>
-              <p>Ads moderation, antifraud, client embeddings, retraining infrastructure, release validation.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <span class="tl-when">Before</span>
-            <div>
-              <h3>Data Scientist, Yandex Search Neuro</h3>
-              <p>LLM evaluation, SFT data and metrics, annotation quality, production-facing model iteration.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <span class="tl-when">Study</span>
-            <div>
-              <h3>HSE, YSDA, CMF, Vega Fond</h3>
-              <p>Applied math, economics, ML, quantitative finance, stochastic processes, market microstructure.</p>
-            </div>
-          </div>
-          <div class="tl-item">
-            <span class="tl-when">Other</span>
-            <div>
-              <h3>Teaching and competitions</h3>
-              <p>Senior TA for ML courses at HSE. Finam × FCS AI Trade winner; Sber × ITMO Robotics School winner.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="sec-header">
-          <span class="sec-num">04</span>
-          <h2>Toolbox</h2>
-        </div>
-        <div class="stack">
-          <div class="stack-col">
-            <h3>ML</h3>
-            <p>PyTorch, Transformers, scikit-learn, XGBoost, evaluation design, SFT data pipelines.</p>
-          </div>
-          <div class="stack-col">
-            <h3>Data / infra</h3>
-            <p>Python, SQL, pandas, NumPy, ClickHouse, Airflow, Docker, monitoring, data quality gates.</p>
-          </div>
-          <div class="stack-col">
-            <h3>Quant / systems</h3>
-            <p>cvxpy, backtesting.py, portfolio optimization, market data, C++17, Linux, Bash.</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="closing">
-        <p>I like work with a measurable feedback loop.</p>
-        <a href="mailto:aeshevchenko1704@gmail.com">aeshevchenko1704@gmail.com</a>
       </div>
+    </header>
 
-    </main>
+    <section>
+      <p class="sec-label">Work</p>
+      <div class="work-grid">
+        <div class="work-item">
+          <span class="tag">Production ML</span>
+          <h3>Retraining and release</h3>
+          <p>Model update pipelines, validation, monitoring, monthly production releases in ads moderation.</p>
+        </div>
+        <div class="work-item">
+          <span class="tag">Evaluation</span>
+          <h3>LLM quality checks</h3>
+          <p>Metrics, slices, QC, annotation checks. Most of the work is finding where the model fails and naming it.</p>
+        </div>
+        <div class="work-item">
+          <span class="tag">Research</span>
+          <h3>Markets, robots, NLP</h3>
+          <p>CEX-DEX execution risk, 3D visual grounding at ITMO Robotics Lab, attention sinks and model uncertainty.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="sec-label">Projects</p>
+      <ul class="proj-list">
+        <li>
+          <a href="https://github.com/aeshef/bRECs" target="_blank" rel="noopener">
+            <div class="proj-name">bRECs</div>
+            <div class="proj-desc">Portfolio optimizer — Black-Litterman, risk parity, mean-CVaR, Kelly. Python, PyTorch, cvxpy.</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aeshef/Finam-AI-Chat" target="_blank" rel="noopener">
+            <div class="proj-name">Finam AI Chat</div>
+            <div class="proj-desc">NL-to-TradeAPI assistant. Finam × FCS AI Trade hackathon winner.</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aeshef/obsidian-agent" target="_blank" rel="noopener">
+            <div class="proj-name">obsidian-agent</div>
+            <div class="proj-desc">Agent over Obsidian — kanban, routines, finance/health tracking, RAG over notes.</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aeshef/GoodNotes-AI-Markup" target="_blank" rel="noopener">
+            <div class="proj-name">GoodNotes-AI-Markup</div>
+            <div class="proj-desc">Handwriting dataset and tooling — custom OD/OCR, labeling pipelines, HF export.</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aeshef/preference-influencing" target="_blank" rel="noopener">
+            <div class="proj-name">preference-influencing</div>
+            <div class="proj-desc">YSDA mentoring project — persona vectors and model steering.</div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="sec-label">Background</p>
+      <ul class="exp-list">
+        <li>
+          <span class="exp-when">Now</span>
+          <div>
+            <div class="exp-role">ML Engineer, Yandex Direct</div>
+            <div class="exp-detail">Ads moderation, antifraud, client embeddings, retraining infrastructure.</div>
+          </div>
+        </li>
+        <li>
+          <span class="exp-when">2024–25</span>
+          <div>
+            <div class="exp-role">Data Scientist, Yandex Search Neuro</div>
+            <div class="exp-detail">LLM evaluation, SFT data/metrics, annotation quality.</div>
+          </div>
+        </li>
+        <li>
+          <span class="exp-when">Study</span>
+          <div>
+            <div class="exp-role">HSE · YSDA · CMF · Vega Fond</div>
+            <div class="exp-detail">Applied math, economics, ML, quant finance, stochastic processes.</div>
+          </div>
+        </li>
+        <li>
+          <span class="exp-when">Also</span>
+          <div>
+            <div class="exp-role">Teaching &amp; competitions</div>
+            <div class="exp-detail">Senior TA ML-1/ML-2 @ HSE. Finam × FCS AI Trade winner; Sber × ITMO Robotics School winner.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="sec-label">Stack</p>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <h3>ML</h3>
+          <p>PyTorch, Transformers, scikit-learn, XGBoost, evaluation design, SFT pipelines.</p>
+        </div>
+        <div class="stack-item">
+          <h3>Data / infra</h3>
+          <p>Python, SQL, pandas, ClickHouse, Airflow, Docker, monitoring, data quality gates.</p>
+        </div>
+        <div class="stack-item">
+          <h3>Quant / systems</h3>
+          <p>cvxpy, backtesting.py, portfolio optimization, C++17, Linux, Bash.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Open to ML engineering and applied research. Remote / relocation.</p>
+      <a href="mailto:aeshevchenko1704@gmail.com">aeshevchenko1704@gmail.com</a>
+    </footer>
+
   </div>
 </body>
 </html>
